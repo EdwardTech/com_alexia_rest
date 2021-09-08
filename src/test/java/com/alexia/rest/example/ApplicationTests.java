@@ -1,4 +1,4 @@
-package com.alexia.rest.rest_example;
+package com.alexia.rest.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

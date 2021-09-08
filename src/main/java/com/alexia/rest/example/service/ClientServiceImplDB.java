@@ -1,13 +1,15 @@
-package com.alexia.rest.rest_example.service;
+package com.alexia.rest.example.service;
 
-import com.alexia.rest.rest_example.model.Client;
-import com.alexia.rest.rest_example.repository.ClientRepository;
+import com.alexia.rest.example.model.Client;
+import com.alexia.rest.example.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ClientServiceImplDB implements ClientService{
 
     @Autowired
@@ -33,9 +35,8 @@ public class ClientServiceImplDB implements ClientService{
     }
 
     @Override
-    public Optional<Client> read(int id) {
-        Long idClient = (long) id;
-        final Optional<Client> client = clientRepository.findById(idClient);
+    public Optional<Client> read(Long id) {
+        final Optional<Client> client = clientRepository.findById(id);
         return client;
     }
 

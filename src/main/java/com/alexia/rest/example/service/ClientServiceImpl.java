@@ -1,8 +1,8 @@
 /**
  *
 
-package com.alexia.rest.rest_example.service;
-import com.alexia.rest.rest_example.model.Client;
+package com.alexia.rest.example.service;
+import com.alexia.rest.example.model.Client;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

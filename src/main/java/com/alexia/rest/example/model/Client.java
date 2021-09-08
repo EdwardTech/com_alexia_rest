@@ -1,36 +1,56 @@
-package com.alexia.rest.rest_example.model;
+package com.alexia.rest.example.model;
 
+import javax.persistence.*;
 import java.util.Objects;
+
+
+// Класс является сущностью
+@Entity
+
+//
+@Table(name = "users")
 
 public class Client {
 
-    private Integer id;
-    private String first_name;
-    private String last_name;
+    // Поле является ID
+    @Id
+    // Генерируемое знаение
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
     private String phone;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getFirst_name() {
-        return first_name;
+        return firstName;
     }
 
-    public void setFirst_name(String name) {
-        this.first_name = name;
+    public void setFirst_name(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLast_name(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getLast_name() {
-        return last_name;
+        return lastName;
     }
 
     public String getEmail() {
@@ -54,8 +74,8 @@ public class Client {
     public String toString() {
         return "Client By Edward {" +
                 "id=" + id +
-                ", first name='" + first_name + '\'' +
-                ", last name' " + last_name + '\'' +
+                ", first name='" + firstName + '\'' +
+                ", last name' " + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 '}' + super.toString();
@@ -68,14 +88,14 @@ public class Client {
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
         return Objects.equals(id, client.id) &&
-                Objects.equals(first_name, client.first_name) &&
-                Objects.equals(last_name, client.last_name) &&
+                Objects.equals(firstName, client.firstName) &&
+                Objects.equals(lastName, client.lastName) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(phone, client.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, first_name, last_name, email, phone);
+        return Objects.hash(id, firstName, lastName, email, phone);
     }
 }
