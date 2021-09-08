@@ -1,12 +1,11 @@
+/**
+ *
+
 package com.alexia.rest.rest_example.service;
 import com.alexia.rest.rest_example.model.Client;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -15,7 +14,6 @@ public class ClientServiceImpl implements ClientService{
     private static final Map<Integer, Client> CLIENT_REPOSITORY_MAP = new HashMap<>();
 
     // Переменная для генерации ID клиента
-
     private static final AtomicInteger CLIENT_ID_HOLDER = new AtomicInteger();
 
     @PostConstruct
@@ -38,7 +36,6 @@ public class ClientServiceImpl implements ClientService{
     public void create(Client client) {
         final int clientId = CLIENT_ID_HOLDER.incrementAndGet();
         client.setId(clientId);
-        client.setPhone("8-999-999-99-99");
         CLIENT_REPOSITORY_MAP.put(clientId, client);
     }
 
@@ -48,7 +45,7 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public Client read(int id) {
+    public Optional<Client> read(int id) {
         return CLIENT_REPOSITORY_MAP.get(id);
     }
     @Override
@@ -65,3 +62,4 @@ public class ClientServiceImpl implements ClientService{
         return CLIENT_REPOSITORY_MAP.remove(id) != null;
     }
 }
+*/

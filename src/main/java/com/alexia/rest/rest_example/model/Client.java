@@ -3,8 +3,10 @@ package com.alexia.rest.rest_example.model;
 import java.util.Objects;
 
 public class Client {
+
     private Integer id;
-    private String name;
+    private String first_name;
+    private String last_name;
     private String email;
     private String phone;
 
@@ -15,12 +17,20 @@ public class Client {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirst_name(String name) {
+        this.first_name = name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
     }
 
     public String getEmail() {
@@ -44,7 +54,8 @@ public class Client {
     public String toString() {
         return "Client By Edward {" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", first name='" + first_name + '\'' +
+                ", last name' " + last_name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 '}' + super.toString();
@@ -57,13 +68,14 @@ public class Client {
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
         return Objects.equals(id, client.id) &&
-                Objects.equals(name, client.name) &&
+                Objects.equals(first_name, client.first_name) &&
+                Objects.equals(last_name, client.last_name) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(phone, client.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, phone);
+        return Objects.hash(id, first_name, last_name, email, phone);
     }
 }

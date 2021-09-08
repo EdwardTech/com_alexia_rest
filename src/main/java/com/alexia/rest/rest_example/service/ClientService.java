@@ -1,6 +1,7 @@
 package com.alexia.rest.rest_example.service;
 import com.alexia.rest.rest_example.model.Client;
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientService {
     /**
@@ -23,7 +24,7 @@ public interface ClientService {
      * @return - объект клиента с заданным ID
      */
 
-    Client read(int id);
+    Optional<Client> read(int id);
 
     /**
      * Обновляет клиента с заданным ID,
@@ -41,4 +42,6 @@ public interface ClientService {
      */
 
     boolean delete(int id);
+
+
 }

@@ -1,0 +1,1 @@
+INSERT INTO users VALUES (1, 'Edward', 'Devyanin', 'edward@gmail.com', '+7-913-913-00-35');
