@@ -1,5 +1,9 @@
 package com.alexia.rest.example.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -9,6 +13,10 @@ import java.util.Objects;
 
 //
 @Table(name = "users")
+
+@Getter
+@Setter
+@ToString
 
 public class Client {
 
@@ -30,44 +38,6 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirst_name() {
-        return firstName;
-    }
-
-    public void setFirst_name(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLast_name(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getLast_name() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
 
     @Override

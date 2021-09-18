@@ -4,44 +4,28 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ClientService {
-    /**
-     * новый клиент
-     * @param client - клиент для создания
-     */
 
-    void create(Client client);
-
-    /**
-     * Возвращает список всех имеющихся клиентов
-     * @return список клиентов
-     */
+    Result create(Client client);
 
     List<Client> readAll();
 
-    /**
-     * Возвращает клиента по его id
-     * @param id - ID клиента
-     * @return - объект клиента с заданным ID
-     */
-
     Optional<Client> read(Long id);
 
-    /**
-     * Обновляет клиента с заданным ID,
-     * в соответствии с переданным клиентом
-     * @param client - клиент в соответсвии с которым нужно обновить данные
-     * @param id - id клиента которого нужно обновить
-     * @return - true если данные были обновлены, иначе false
-     */
-    boolean update(Client client, int id);
+    Result update(Client client);
 
-    /**
-     * Удаляет клиента с заданным ID
-     * @param id - id клиента, которого нужно удалить
-     * @return - true если клиент был удален, иначе false
-     */
 
-    boolean delete(int id);
+    Result delete(Long id);
 
+    class Result {
+        private final boolean success;
+
+        Result(boolean success) {
+            this.success = success;
+        }
+
+        public boolean isSuccess() {
+            return success;
+        }
+    }
 
 }

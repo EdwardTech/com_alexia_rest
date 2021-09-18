@@ -2,5 +2,5 @@
 
 
 curl --request DELETE -sL \
-     --url 'http://localhost:8080/clients/2'
+     --url 'http://localhost:9967/clients/1'
 

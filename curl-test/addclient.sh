@@ -2,7 +2,7 @@
 
 
 curl --request POST -sL \
-     --url 'http://localhost:8080/clients/'\
+     --url 'http://localhost:9967/clients/'\
      -H "Content-Type: application/json" \
-     -d '{"name":"test client 7","email":"test-new7@test.ru"}'
+     -d '{"firstName": "TEST", "lastName": "EGEG", "email": "elin291@yandex.ru", "phone":"+7-924-318-10-74"}'
 

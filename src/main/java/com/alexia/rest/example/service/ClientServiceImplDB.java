@@ -19,29 +19,57 @@ public class ClientServiceImplDB implements ClientService{
 
 
     @Override
-    public boolean update(Client client, int id) {
-        return false;
+    public Result update(Client client) {
+
+        Optional<Client> clientOptional = this.clientRepository.findById(client.getId());
+
+        if(! clientOptional.isPresent()) {
+            System.out.println("you will not upgrade this client. Client with id: " + client.getId() + " no such");
+            return new Result(false);
+        }
+        clientRepository.save(client);
+        System.out.println("client with id: "  + client.getId() + " was updated");
+        return new Result(true);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public Result delete(Long id) {
+
+        Optional<Client> client = this.clientRepository.findById(id);
+
+        if(!client.isPresent()) {
+            return new Result(false);
+        }
+
+        clientRepository.deleteById(id);
+        System.out.println("client deleted with id: " + id);
+        return new Result(true);
     }
 
     @Override
-    public void create(Client client) {
+    public Result create(Client client) {
         client.setId(null);
         clientRepository.save(client);
+        return new Result(true);
+
     }
 
     @Override
     public Optional<Client> read(Long id) {
         final Optional<Client> client = clientRepository.findById(id);
+
+        if(!client.isPresent()) {
+            System.out.println("you will not get this client. there is no such client");
+            return client;
+        }
+
+        System.out.println("read one");
         return client;
     }
 
     @Override
     public List<Client> readAll() {
+        System.out.println("read all");
         Iterable<Client> all = clientRepository.findAll();
         List<Client> result = new ArrayList<>();
         all.forEach(result::add);
