@@ -1,7 +1,9 @@
 package com.alexia.rest.example.service;
 
 import com.alexia.rest.example.model.Client;
+import com.alexia.rest.example.repository.ClientRepository;
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ClientServiceImplDBTest {
+
+    @Autowired
+    ClientRepository clientRepository;
 
     @Autowired
     ClientService clientService;
@@ -84,7 +89,11 @@ class ClientServiceImplDBTest {
         }
 
         Assert.assertTrue(isDeleted);
+    }
 
-
+    @AfterEach
+    public void resetDb() {
+        System.out.println("DB clear");
+        clientRepository.deleteAll();
     }
 }
