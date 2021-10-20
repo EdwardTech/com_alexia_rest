@@ -3,6 +3,7 @@ package com.alexia.rest.example.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@Accessors(chain = true)
 
 public class Client {
 
@@ -38,6 +40,16 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
+    public Client(String firstName, String lastName, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+
+    }
+
+    public Client() {
+    }
 
 
     @Override

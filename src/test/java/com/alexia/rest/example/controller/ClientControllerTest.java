@@ -1,37 +1,58 @@
 package com.alexia.rest.example.controller;
 
 import com.alexia.rest.example.model.Client;
-import com.alexia.rest.example.service.ClientService;
+import com.alexia.rest.example.repository.ClientRepository;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+@WebMvcTest
 class ClientControllerTest {
 
     @Autowired
-    ClientService clientService;
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    // Поведение репозитория сымитировано
+    @MockBean
+    private ClientRepository clientRepository;
 
     @Test
-    void getClient() {
+    void getClient() throws Exception {
+
     }
 
     @Test
     void getAllClients() {
-        List<Client> allClients = this.clientService.readAll();
 
-        for (Client client: allClients) {
-            System.out.println(client);
-        }
     }
 
     @Test
-    void createClient() {
+    public void createClient() throws Exception {
+        Client client = new Client("Test-firstName-controller", "Test-lastName-controller", "Test-email-controller", "Test-phone-controller");
+        Mockito.when(clientRepository.save(Mockito.any())).thenReturn(client);
+        // Cоздаем юзера и отправляем фейковый пост запрос преобразовав запрос в json-строку
+        mockMvc.perform(
+                        post("/clients/")
+                                .content(objectMapper.writeValueAsString(client))
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                // проверяем код ответа и получаем клиента
+                .andExpect(status().isCreated())
+                .andExpect(content().json(objectMapper.writeValueAsString(client)));
     }
 
     @Test
